@@ -1,0 +1,38 @@
+{% extends 'cadmin/base_admin.html'%}
+{% load crispy_forms_tags %}
+{% block title %}
+    New Category - {{ block.super }}
+{% endblock %}
+
+{% block main %}
+    
+    <div class="container">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{%if message.tags %} class = "{{ message.tags }}" {% endif %}>{{message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif%}
+
+        
+        <form action="" method="POST">
+            {% csrf_token %}
+
+        <form action="" method="POST">
+            {% csrf_token %}
+            <fieldset class = 'form-group'>
+                <legend class='border-bottom mb-4'>Create Category</legend>
+                {{ form.as_p}}
+            </fieldset>
+            
+                
+               
+                <div class="form-group">
+                    <button class="waves-effect waves-light btn-large" type="submit">Create</button>
+                </div>
+
+        </form>
+    </div>
+
+{% endblock %}

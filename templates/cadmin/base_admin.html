@@ -1,0 +1,44 @@
+{% extends "cadmin/base.html" %}
+
+{% block content %}
+
+   <nav>
+    <div class="container nav-wrapper">
+        <a href="" class="brand-logo">The Great Django Blog - Admin Panel</a>
+    </div>
+   </nav>
+    
+    
+
+    
+    <ul id = "slide-out" class="sidenav sidenav-fixed">
+        <li><div class="user-view">
+            <div class="background">
+                {% load static %}
+              <img src='{% static "images/office.jpg" %}'>
+            </div>
+            <a href="{%url 'cadmin:profile'%}"><img class="circle" src="{{ request.user.author.pp.url }}"></a>
+            <a href="{%url 'cadmin:profile'%}"><span class="white-text name">{{ request.user.username}}</span></a>
+            <a href="{%url 'cadmin:profile'%}"><span class="white-text email">{{ request.user.email}}</span></a>
+          </div></li>
+        <li><a href="{%url 'blog:user-post'%}">Posts</a></li>
+        <li><a href="{%url 'blog:user-category'%}">Categories</a></li>
+        <li><a href="{%url 'blog:user-tag'%}">Tags</a></li>
+        <li><a href="">Change Password</a></li>
+        <li><a target="_blank" href="{%url 'blog:home'%}">View Site</a></li>
+        {% if request.user.is_staff %}
+        <li><a target="_blank" href="{%url 'admin:index'%}">Admin Panel</a></li>
+        {%endif%}
+        <li><a href="{%url 'cadmin:logout'%}">Logout</a></li>
+    </ul>
+    
+
+            {% block main %}
+
+            {% endblock %}
+
+        
+
+    
+
+{% endblock %}

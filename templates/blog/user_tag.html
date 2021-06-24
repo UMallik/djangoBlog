@@ -1,0 +1,39 @@
+{% extends 'cadmin/base_admin.html'%}
+{% load crispy_forms_tags %}
+{% block title %}
+    Profile - {{ block.super }}
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{%if message.tags %} class = "{{ message.tags }}" {% endif %}>{{message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif%}
+    {% for tag in tag %}           
+    <div class="row">
+        <div class="col s12 m6">
+        <div class="card light-grey darken-1">
+   
+            <div class="card-content ">
+                <span>Tag: <a href="{{ tag.get_absolute_url }}">{{tag.name}}</a></span>
+            
+            </div>   
+             
+        </div>
+        </div>
+        </div>
+    {%empty%}
+        <h4>You havenot yet made any tag</h4>
+        <p>Click <a href="{% url 'blog:tag-create'%}">here</a> to make one</p>
+    {%endfor%}
+    </div>
+    
+    </div>
+    
+
+{% endblock %}

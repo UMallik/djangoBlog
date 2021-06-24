@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+
+{% block content %}
+    {% if messages %}
+        <ul class = 'messages'>
+            {% for message in messages %}
+                <li {% if message.tags%} class="{{ message.tags }}" {% endif %}>{{ message}}</li>
+            {% endfor %}    
+        </ul>
+    {% endif %}
+
+    <h3>Submit Your feedback </h3>
+    <form action="" method='POST'>
+        {% csrf_token %}
+        {{form.as_p }}
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+    </form>
+
+{% endblock %}
+

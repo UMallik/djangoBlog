@@ -1,0 +1,48 @@
+{% extends 'cadmin/base_admin.html'%}
+{% load crispy_forms_tags %}
+{% block title %}
+    Profile - {{ block.super }}
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{%if message.tags %} class = "{{ message.tags }}" {% endif %}>{{message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif%}
+    {% for post in posts %}           
+    {% include 'blog/post_info.html' %}
+      
+{% empty %}
+    <p>You have not posted anything yet. Click <a href="{% url 'blog:post-create'%}">here</a> to create a post </p>    
+
+{% endfor %}
+{% if is_paginated %}
+
+        {% if page_obj.has_previous %}
+            <a href="?page=1" class = 'btn btn-outline-info mb-4'>First</a>
+            <a href="?page={{page_obj.previous.page_number}}" class = 'btn btn-outline-info mb-4'>Previous</a>
+        {% endif %}
+        
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a href="?page={{num}}" class = 'btn btn-info mb-4'>{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3'%}
+                <a href="?page={{num}}" class = 'btn btn-info mb-4'>{{ num }}</a>
+
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+            
+            <a href="?page={{page_obj.next.page_number}}" class = 'btn btn-outline-info mb-4'>Next</a>
+            <a href="?page={{page_obj.paginator.num_pages}}" class = 'btn btn-outline-info mb-4'>Last</a>
+        {% endif %} 
+{% endif %}
+    </div>
+    
+
+{% endblock %}

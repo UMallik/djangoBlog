@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <h1>Cookie Info</h1>
+
+    {%if not request.COOKIES.visits %}
+        <p>This is your first visit</p>
+    {%else %}
+        You have visited this page: {{request.COOKIES.visits|add:'1'}} times
+    {%endif%}
+
+    <p><a href="{%url 'blog:stop_tracking'%}">Stop tracking me</a></p>
+
+    
+{% endblock %}

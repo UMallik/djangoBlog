@@ -1,0 +1,29 @@
+# Django #
+
+*.log
+*.pot
+*.pyc
+__pycache__
+.env
+
+
+
+# Python #
+*.py[cod]
+*$py.class
+
+# Environments #
+
+venv/
+
+# Database #
+db.postgresql
+
+# VS Code #
+
+.vscode/* 
+!.vscode/settings.json 
+!.vscode/tasks.json 
+!.vscode/launch.json 
+!.vscode/extensions.json 
+.history

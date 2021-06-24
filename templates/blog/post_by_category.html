@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{% block title %}
+    {{ category|title }} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+
+    <h4>All posts under category: {{ category.name|capfirst }}</h4>
+    
+    {% for post in posts %}
+
+        {% include 'blog/post_info.html' %}
+ 
+    {% empty %}
+        No Post in this Category Yet!
+    {% endfor %}
+{% endblock%}

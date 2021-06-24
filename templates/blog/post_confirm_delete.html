@@ -1,0 +1,31 @@
+{% extends 'cadmin/base_admin.html'%}
+{% load crispy_forms_tags %}
+{% block title %}
+    Post - {{ block.super }}
+{% endblock %}
+
+{% block main %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{%if message.tags %} class = "{{ message.tags }}" {% endif %}>{{message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif%}
+    <div class="container">
+        
+        <form action="" method="POST">
+            {% csrf_token %}
+            
+                <h2>Are you sure that you want to delete the post "{{ object.title}}"</h2>
+               
+                <div class="form-group">
+                    <button class="waves-effect waves-light btn-large btn-danger" type="submit">Yes, Delete</button>
+                    <a class="waves-effect waves-light btn-large btn-secondary" href="{{object.get_absolute_url}}">Cancel</a>
+
+                </div>
+
+        </form>
+    </div>
+
+{% endblock %}
